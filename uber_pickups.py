@@ -51,7 +51,9 @@ st.write(
 # --- Map Visualization ---
 st.subheader("📍 Store Locations on Map")
 st.map(filtered_data, latitude='latitude', longitude='longitude')
+st.metric("Number of Starbucks locations", len(filtered_data))
 
 # --- Optional: View Filtered Table ---
 with st.expander("🔎 View filtered data table"):
     st.dataframe(filtered_data)
+

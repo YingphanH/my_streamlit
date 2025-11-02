@@ -26,6 +26,9 @@ if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(data)
 
+st.write(data.dtypes)
+
+
 #st.subheader('Number of pickups by hour')
 #hist_values = np.histogram(
     #data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
@@ -40,6 +43,7 @@ if st.checkbox('Show raw data'):
 
 st.subheader("Store Locations on Map")
 st.map(data, latitude='latitude', longitude='longitude')
+
 
 
 

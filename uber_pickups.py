@@ -38,7 +38,10 @@ if st.checkbox('Show raw data'):
 
 #st.map(filtered_data)
 
-st.map(data, latitude='latitude', longitude='longitude')
+st.write(data.columns)
+
+#st.map(data, latitude='latitude', longitude='longitude')
+
 
 
 

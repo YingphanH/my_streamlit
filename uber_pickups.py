@@ -54,8 +54,6 @@ filtered_data = data[
 
 st.metric("Number of Starbucks locations", len(filtered_data))
 
-]
-
 st.write(
     f"### Showing {len(filtered_data)} stores "
     f"in {', '.join(selected_countries[:3]) + ('...' if len(selected_countries) > 3 else '')} "

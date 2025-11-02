@@ -47,8 +47,29 @@ data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
 # Drop rows where lat/lon are missing or invalid
 data = data.dropna(subset=['latitude', 'longitude'])
 
-st.subheader("Store Locations on Map")
-st.map(data, latitude='latitude', longitude='longitude')
+st.sidebar.header("Filter Options")
+
+ownership_options = sorted(data['ownership type'].dropna().unique())
+
+selected_ownership = st.sidebar.multiselect(
+    "Select ownership types to display:",
+    options=ownership_options,
+    default=ownership_options  # show all by default
+)
+
+# Filter data based on selection
+filtered_data = data[data['ownership type'].isin(selected_ownership)]
+
+st.write(f"### Showing {len(filtered_data)} stores ({', '.join(selected_ownership)})")
+
+# --- Map visualization ---
+st.subheader("📍 Store Locations on Map")
+st.map(filtered_data, latitude='latitude', longitude='longitude')
+
+# Optional: table of filtered data
+with st.expander("See filtered data table"):
+    st.dataframe(filtered_data)
+
 
 
 

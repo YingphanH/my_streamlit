@@ -4,7 +4,8 @@ import numpy as np
 
 st.title('Starbucks visualize')
 
-DATE_COLUMN = 'date/time'DATA_URL = 'https://raw.githubusercontent.com/YingphanH/my_streamlit/main/directory.csv'
+DATE_COLUMN = 'date/time'
+DATA_URL = 'https://raw.githubusercontent.com/YingphanH/my_streamlit/main/directory.csv'
 
 @st.cache_data
 def load_data(nrows):
@@ -36,5 +37,6 @@ st.bar_chart(hist_values)
 #st.subheader(f'Map of all pickups at {hour_to_filter}:00')
 
 #st.map(filtered_data)
+
 
 

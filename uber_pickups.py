@@ -26,7 +26,6 @@ if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(data)
 
-st.write(data.dtypes)
 
 
 #st.subheader('Number of pickups by hour')
@@ -41,8 +40,17 @@ st.write(data.dtypes)
 
 #st.map(filtered_data)
 
+# Convert columns to numeric (in case they are strings)
+data['latitude'] = pd.to_numeric(data['latitude'], errors='coerce')
+data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
+
+# Drop rows where lat/lon are missing or invalid
+data = data.dropna(subset=['latitude', 'longitude'])
+
 st.subheader("Store Locations on Map")
 st.map(data, latitude='latitude', longitude='longitude')
+
+
 
 
 

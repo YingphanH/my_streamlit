@@ -22,24 +22,38 @@ st.sidebar.header("Filter Options")
 
 # --- Country Filter ---
 countries = sorted(data['country'].dropna().unique())
-selected_countries = st.sidebar.multiselect(
-    "🌍 Select country/countries:",
-    options=countries,
-    default=countries  # show all by default
-)
+select_all_countries = st.sidebar.checkbox("Select all countries", value=True)
+
+if select_all_countries:
+    selected_countries = countries
+else:
+    selected_countries = st.sidebar.multiselect(
+        "🌍 Select country/countries:",
+        options=countries,
+        default=[]
+    )
 
 # --- Ownership Type Filter ---
 ownership_options = sorted(data['ownership type'].dropna().unique())
-selected_ownership = st.sidebar.multiselect(
-    "🏢 Select ownership types:",
-    options=ownership_options,
-    default=ownership_options
-)
+select_all_ownership = st.sidebar.checkbox("Select all ownership types", value=True)
+
+if select_all_ownership:
+    selected_ownership = ownership_options
+else:
+    selected_ownership = st.sidebar.multiselect(
+        "🏢 Select ownership types:",
+        options=ownership_options,
+        default=[]
+    )
 
 # --- Apply Filters ---
 filtered_data = data[
     (data['country'].isin(selected_countries)) &
     (data['ownership type'].isin(selected_ownership))
+]
+
+st.metric("Number of Starbucks locations", len(filtered_data))
+
 ]
 
 st.write(
@@ -56,4 +70,5 @@ st.metric("Number of Starbucks locations", len(filtered_data))
 # --- Optional: View Filtered Table ---
 with st.expander("🔎 View filtered data table"):
     st.dataframe(filtered_data)
+
 

@@ -38,9 +38,9 @@ if st.checkbox('Show raw data'):
 
 #st.map(filtered_data)
 
-st.write(data.columns)
+st.subheader("Store Locations on Map")
+st.map(data, latitude='latitude', longitude='longitude')
 
-#st.map(data, latitude='latitude', longitude='longitude')
 
 
 
